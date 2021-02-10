@@ -1,6 +1,6 @@
 on:
   rss:
-    url: https://hnrss.org/newest?points=300&count=3
+    url: https://rsshub.app/github/repos/azu
 jobs:
   print:
     name: Print
