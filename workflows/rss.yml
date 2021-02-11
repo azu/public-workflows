@@ -6,12 +6,17 @@ jobs:
     name: Print
     runs-on: ubuntu-latest
     steps:
-      - name: Print Outputs
+      - name: Add Card On Update New Repositories
         env:
           title: ${{on.rss.outputs.title}}
           contentSnippet: ${{on.rss.outputs.contentSnippet}}
           link: ${{on.rss.outputs.link}}
+          GITHUB_API_TOKEN: ${{secrets.PERSONAL_GITHUB_TOKEN}}
+          CARD_API_URL: ${{secrets.CARD_API_URL}}
         run: |
-          echo title: $title
-          echo contentSnippet: $contentSnippet
-          echo link: $link
+          curl \
+            -X POST \
+             -H "Authorization: token $GITHUB_API_TOKEN" \
+            -H "Accept: application/vnd.github.inertia-preview+json" \
+            $CARD_API_URL \
+            -d "{\"note\":\"$title\n$link\"}"

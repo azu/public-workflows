@@ -19,7 +19,7 @@ on:
       verbose:
         description: "--verbose: debug workflow, true or false"
         required: false
-        default: "false"
+        default: "true"
 jobs:
   run:
     runs-on: ubuntu-latest
